@@ -1,0 +1,37 @@
+<div class="card">
+  <div class="card-header">
+    Créer/Modifier une demande de congés
+  </div>
+
+  <div class="card-body">
+    <form [formGroup]="formDemande" (ngSubmit)="onGetDemandeInfos()">
+      <div class="mt-3">
+        <label for="agentId">Agent</label>
+        <select name="agentId" formControlName="agentId" id="agentId" class="form-select">
+          <option disabled selected>Sélectionner l'agent</option>
+          <option *ngFor="let a of agents" [ngValue]="a.id">{{ a.matricule + ' - ' + a.nom + ' '+ a.prenom }}</option>
+        </select>
+      </div>
+
+      <div class="mt-3">
+        <label for="motif">Motif</label>
+        <textarea name="motif" formControlName="motif" class="form-control" id="motif" rows="2" placeholder="Saisir le motif"></textarea>
+      </div>
+
+      <div class="mt-3">
+        <label for="dateDebut">Date de début</label>
+        <input name="dateDebut" formControlName="dateDebut" type="date" id="dateDebut" class="form-control">
+      </div>
+
+      <div class="mt-3">
+        <label for="dateDebut">Date de fin</label>
+        <input name="dateFin" formControlName="dateFin" type="date" id="dateFin" class="form-control">
+      </div>
+
+      <div class="mt-3 text-right">
+        <button type="reset" (click)="onCloseModal(false)" class="btn btn-danger mx-2">Annuler</button>
+        <button type="submit" [disabled]="formDemande.invalid" class="btn btn-success">Enregistrer</button>
+      </div>
+    </form>
+  </div>
+</div>

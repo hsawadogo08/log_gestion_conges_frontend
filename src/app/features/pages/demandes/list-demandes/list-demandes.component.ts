@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {Demande} from "../../../../models/demande.model";
 import {DemandeService} from "../demande.service";
+import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
+import {CreateUpdateDemandeComponent} from "../create-update-demande/create-update-demande.component";
 
 @Component({
   selector: 'app-list-demandes',
@@ -12,6 +14,7 @@ export class ListDemandesComponent implements OnInit{
 
   constructor(
     private demandeService: DemandeService,
+    private modal: NgbModal,
   ) {
   }
 
@@ -23,10 +26,23 @@ export class ListDemandesComponent implements OnInit{
     this.demandeService.getDemandes().subscribe({
       next: response => {
         this.demandes = response;
+        console.log(this.demandes);
       },
       error: err => {
         console.error(err);
       }
     });
+  }
+
+  async openCreateUpdateDemandeModal(demande?: Demande) {
+    const currentModal = await this.modal.open(CreateUpdateDemandeComponent, { backdrop: 'static', size: 'lg'});
+    currentModal.componentInstance.demande = demande;
+    currentModal.result.then(
+      response => {
+        if (response === true) {
+          this.getDemandes();
+        }
+      }
+    );
   }
 }

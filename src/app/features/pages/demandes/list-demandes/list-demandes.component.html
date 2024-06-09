@@ -4,10 +4,13 @@
   </div>
 
   <div class="card-body">
+    <button class="btn btn-success mb-2" (click)="openCreateUpdateDemandeModal()">Nouvelle demande</button>
+
     <table class="table table-striped">
       <thead>
         <tr>
           <th>#</th>
+          <th>Agent</th>
           <th>Motif</th>
           <th>Date de début</th>
           <th>Date de fin</th>
@@ -19,13 +22,14 @@
       <tbody>
         <tr *ngFor="let d of demandes; index as i">
           <td>{{ i + 1 }}</td>
+          <td>{{ d?.agent?.matricule + ' - ' + d?.agent?.nom + ' ' + d.agent?.prenom }}</td>
           <td>{{ d.motif }}</td>
           <td>{{ d.dateDebut }}</td>
           <td>{{ d.dateFin }}</td>
           <td>{{ d.etat }}</td>
           <td>
             <button class="btn btn-outline-warning">Voir</button>
-            <button class="btn btn-outline-success mx-2">Modifier</button>
+            <button class="btn btn-outline-success mx-2" (click)="openCreateUpdateDemandeModal(d)">Modifier</button>
             <button class="btn btn-outline-danger">Supprimer</button>
           </td>
         </tr>
