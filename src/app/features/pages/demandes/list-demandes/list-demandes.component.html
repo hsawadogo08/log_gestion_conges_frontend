@@ -1,0 +1,35 @@
+<div class="card mt-3">
+  <div class="card-header">
+    Liste des demandes
+  </div>
+
+  <div class="card-body">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Motif</th>
+          <th>Date de début</th>
+          <th>Date de fin</th>
+          <th>Etat</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let d of demandes; index as i">
+          <td>{{ i + 1 }}</td>
+          <td>{{ d.motif }}</td>
+          <td>{{ d.dateDebut }}</td>
+          <td>{{ d.dateFin }}</td>
+          <td>{{ d.etat }}</td>
+          <td>
+            <button class="btn btn-outline-warning">Voir</button>
+            <button class="btn btn-outline-success mx-2">Modifier</button>
+            <button class="btn btn-outline-danger">Supprimer</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
