@@ -1,0 +1,42 @@
+<div class="row">
+  <div class="col-8 offset-2">
+    <div class="card mt-3">
+      <div class="card-header">Détail des informations de la demande</div>
+
+      <div class="card-body">
+        <div class="row">
+          <div class="col-12 col-md-6 mt-3">
+            <label>Agent</label>
+            <input class="form-control" disabled type="text" value="{{ demande?.agent?.matricule + ' - ' + demande?.agent?.nom + ' '+ demande?.agent?.prenom}}">
+          </div>
+
+          <div class="col-12 col-md-6 mt-3">
+            <label>Etat de la demande</label>
+            <input class="form-control" disabled type="text" value="{{ demande?.etat }}">
+          </div>
+
+          <div class="col-12 col-md-6 mt-3">
+            <label>Date de début</label>
+            <input class="form-control" disabled type="text" value="{{ demande?.dateDebut | date: 'dd/MM/yyyy' }}">
+          </div>
+
+          <div class="col-12 col-md-6 mt-3">
+            <label>Date de fin</label>
+            <input class="form-control" disabled type="text" value="{{ demande?.dateFin | date: 'dd/MM/yyyy' }}">
+          </div>
+
+          <div class="col-12 mt-3">
+            <label>Motif</label>
+            <textarea class="form-control" rows="3" disabled>{{ demande.motif }}</textarea>
+          </div>
+
+          <div class="col-12 text-right mt-3">
+            <button class="btn btn-danger" (click)="onGoBack()">Retour</button>
+            <button class="btn btn-outline-danger mx-3">Fermer la demande</button>
+            <button class="btn btn-outline-success">Valider la demande</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

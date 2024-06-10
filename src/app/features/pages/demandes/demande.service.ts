@@ -24,4 +24,12 @@ export class DemandeService {
   update(demande: Demande): Observable<Demande> {
     return this.http.put<Demande>(`${API_URL}/api/demandes/${demande.id}`, demande);
   }
+
+  findOne(demandeId: number): Observable<Demande> {
+    return this.http.get<Demande>(`${API_URL}/api/demandes/${demandeId}`);
+  }
+
+  delete(demandeId: number): Observable<void> {
+    return this.http.delete<void>(`${API_URL}/api/demandes/${demandeId}`);
+  }
 }

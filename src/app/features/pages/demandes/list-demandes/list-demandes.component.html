@@ -28,9 +28,9 @@
           <td>{{ d.dateFin }}</td>
           <td>{{ d.etat }}</td>
           <td>
-            <button class="btn btn-outline-warning">Voir</button>
+            <button class="btn btn-outline-warning" [routerLink]="'/pages/demandes/detail/' + d.id">Voir</button>
             <button class="btn btn-outline-success mx-2" (click)="openCreateUpdateDemandeModal(d)">Modifier</button>
-            <button class="btn btn-outline-danger">Supprimer</button>
+            <button class="btn btn-outline-danger" (click)="deleteDemande(d.id!)">Supprimer</button>
           </td>
         </tr>
       </tbody>

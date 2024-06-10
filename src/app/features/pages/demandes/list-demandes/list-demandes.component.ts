@@ -26,7 +26,6 @@ export class ListDemandesComponent implements OnInit{
     this.demandeService.getDemandes().subscribe({
       next: response => {
         this.demandes = response;
-        console.log(this.demandes);
       },
       error: err => {
         console.error(err);
@@ -44,5 +43,14 @@ export class ListDemandesComponent implements OnInit{
         }
       }
     );
+  }
+
+  deleteDemande(demandeId: number): void {
+    this.demandeService.delete(demandeId).subscribe({
+      next: () => {
+        this.getDemandes();
+      },
+      error: err => console.error(err)
+    });
   }
 }

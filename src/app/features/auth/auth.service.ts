@@ -4,6 +4,7 @@ import {Login} from "../../models/login.model";
 import {Observable} from "rxjs";
 import {API_URL} from "../../../environments/environment";
 import {Token} from "../../models/token.model";
+import {Router} from "@angular/router";
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +14,7 @@ export class AuthService {
 
   constructor(
     private http: HttpClient,
+    private router: Router,
   ) { }
 
   onAuthenticate(login: Login): Observable<Token> {
@@ -25,5 +27,10 @@ export class AuthService {
 
   getToken(): string | null {
     return localStorage.getItem(this.TOKEN_KEY);
+  }
+
+  onLogout(): void {
+    localStorage.removeItem(this.TOKEN_KEY);
+    this.router.navigate(['/auth']);
   }
 }
